@@ -1,0 +1,32 @@
+version: '3.1'
+
+services:
+  rest:
+    container_name: rest_api_user
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8081:8081
+    environment:
+      - HOST_MY_SQL=mysql_db
+      - USER_NAME_MY_SQL=mysql
+      - PASSWORD_MY_SQL=mysql
+    depends_on:
+      - mysql_db
+  mysql_db:
+    image: mysql:8.0.19
+    container_name: mysql_db
+    environment:
+      - MYSQL_USER=mysql
+      - MYSQL_PASSWORD=mysql
+      - MYSQL_DATABASE=user_db
+      - MYSQL_ROOT_PASSWORD=root
+    expose:
+      - 3306
+    volumes:
+      - db_mysql:/var/lib/mysql
+    restart: always
+volumes:
+  db_mysql:
+
