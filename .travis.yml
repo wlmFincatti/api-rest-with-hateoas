@@ -1,8 +1,8 @@
 language: java
 script:
-  - mvn clean package -B -f user-api/pom.xml -DskipTests=true
+  - mvn clean package -B -f user-api/pom.xml -DskipTests=true -Pprod
   - docker-compose up -d
-  - mvn clean verify -B -f aceptancetest/pom.xml
+  - mvn verify -B -f aceptancetest/pom.xml
   - docker-compose down
 install:
   - mvn install -B -f user-api/pom.xml
