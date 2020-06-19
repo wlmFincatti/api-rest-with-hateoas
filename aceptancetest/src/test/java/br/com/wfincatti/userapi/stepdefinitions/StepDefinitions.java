@@ -16,7 +16,7 @@ public class StepDefinitions {
 
     @Before
     public void setup() {
-        RestAssured.port = 8082;
+        RestAssured.port = 8081;
         RestAssured.basePath = "/api/v1/user";
     }
 
